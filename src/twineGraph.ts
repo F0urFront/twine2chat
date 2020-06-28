@@ -5,27 +5,20 @@ import { Graph } from '@dagrejs/graphlib';
 
 // Adapted from https://raw.githubusercontent.com/lazerwalker/twison
 
-function extractLinksFromText(text: string) {
-  var links = text.match(/\[\[.+?\]\]/g)
-  if (links) {
-    return links.map(function(link) {
-      var differentName = link.match(/\[\[(.*?)\-\&gt;(.*?)\]\]/);
-      if (differentName) {
-        // [[name->link]]
-        return {
-          name: differentName[1],
-          link: differentName[2]
-        };
-      } else {
-        // [[link]]
-        link = link.substring(2, link.length-2)
-        return {
-          name: link,
-          link: link
-        }
-      }
-    });
-  }
+function extractLinksFromText(txt: string) {
+  const rawLinks = txt.match(/\[\[.+?\]\]/g) || [];
+  const text = txt.startsWith('[[') ? null : txt.split('[[')[0].trimRight();
+
+  const links = rawLinks.map((link) => {
+    var differentName = link.match(/\[\[(.*?)\-\&gt;(.*?)\]\]/);
+    if (differentName) { // [[name->link]]
+      return { name: differentName[1], link: differentName[2] };
+    }
+    // [[link]]
+    return { link: link.substring(2, link.length-2), name: link };
+  });
+
+  return { text, links };
 };
 
 export async function convertStory(twineFile: string) {
@@ -35,9 +28,9 @@ export async function convertStory(twineFile: string) {
   const pidsByName: any = {};
   const passages: any[] = twineJson.HTML.BODY[0]['TW-STORYDATA'][0]['TW-PASSAGEDATA'];
   passages.forEach((passage: any) => {
-    const text = passage._;
+    // const text = passage._;
 
-    const links = extractLinksFromText(text);
+    const { text, links } = extractLinksFromText(passage._);
 
     const attributes: any = {};
     ["NAME", "PID", "POSITION", "TAGS"].forEach(function(attr) {

@@ -1,9 +1,21 @@
-## Manual edit to Twine project
+## Twine file
+### Assumptions
+- Each node name starts with a scene label/ID
+### Manual edit to Twine project
+- Normalize responses/variables
+  - yes
+  - no
+  - no response
+  - variables
+    - give name => {NAME}
+    - share story => {STORY}
 - Add conditionals to scenes
   - publish datetime
   - Number of interactions (interaction == interaction since current scene post)
   - Min time since post
   - Max time since post (required)
+### Improvements
+- Would be better to set scene labels (e.g. 1.3A) as tags rather than the title
 
 
 ## Logic Flow
