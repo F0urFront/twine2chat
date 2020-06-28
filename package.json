@@ -1,0 +1,36 @@
+{
+  "name": "ff-meet-paige",
+  "version": "1.0.0",
+  "description": "FF Assignment",
+  "main": "src/index.ts",
+  "author": "Stephen Aldriedge",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --watch src --delay 1 --exec 'ts-node' src/index.ts",
+    "build": "tsc -b",
+    "start": "NODE_ENV=production node dist/index.js",
+    "deploy": "",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "@types/multer": "^1.4.3",
+    "@types/xml2js": "^0.4.5",
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "@dagrejs/graphlib": "^2.1.4",
+    "botbuilder-adapter-hangouts": "^1.0.7",
+    "botkit": "^4.9.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "xml2js": "^0.4.23"
+  },
+  "jest": {}
+}

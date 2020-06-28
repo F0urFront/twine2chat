@@ -1,0 +1,8 @@
+node_modules/
+uploads/
+FFBot.bot
+dist/
+build/
+.vscode/
+.env
+.env.prod

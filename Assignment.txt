@@ -1,0 +1,5 @@
+Attached find the interactive PILOT for our 1st virtual character experience, Paige.
+
+This HTML can be imported into Twine and easily edited / coded (see Javascript / CSS options).
+
+Using any open-source software & integrating with a messenger of your choosing, adapt this short pilot into an automated experience. 

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Twine 2 Chat</title>
+  </head>
+  <body>
+    <h1>Twine 2 Chat</h1>
+    <h2 id="status">Processing experience...</h2>
+    <a id="chatLink" href="" target="_blank"></a>
+  </body>
+  <script>
+    function checkStatus() {
+      setTimeout(async () => {
+        const url = `${window.location.origin}/experience`;
+        try {
+          const req = await fetch(url);
+          const exp = await req.json();
+          console.log(exp);
+          document.getElementById('status').innerHTML = exp.status;
+          document.getElementById('chatLink').innerHTML = "Chat now";
+          document.getElementById('chatLink').setAttribute('href', exp.url);
+        } catch (err) {
+          console.error(err.message);
+        }
+        checkStatus();
+      }, 2000);
+    }
+
+    checkStatus();
+  </script>
+</html>
