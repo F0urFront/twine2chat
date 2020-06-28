@@ -2,7 +2,7 @@
 
 ## Built with
 - Express
-- DialogFlow
+- Botkit
 
 ## Install
 `yarn install`
