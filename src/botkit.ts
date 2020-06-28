@@ -1,6 +1,10 @@
 import { Botkit, BotkitConversation } from 'botkit';
 const { HangoutsAdapter } = require('botbuilder-adapter-hangouts');
+import { traverse } from './twineGraph';
 
+
+const yesPattern = 'yes|ya|yeah|yep|sure|ok';
+const noPattern = 'no|nah|nope';
 
 export default class Bot {
   controller: Botkit;
@@ -27,6 +31,15 @@ export default class Bot {
   train(story: any) {
     const convo = new BotkitConversation('experience', this.controller);
 
+    traverse(story, (n, e) => {
+      const threadId = n.isRoot ? 'default' : n.pid;
+      convo.addQuestion(n.text, e.map(op => ({
+        pattern: op.text,
+        handler: async (res, conv, bot) => conv.gotoThread(op.nodeId),
+      })), threadId, threadId);
+      
+      console.log(e);
+    });
     // if node text is [[something]] it just redirects
 
     this.controller.addDialog(convo);
