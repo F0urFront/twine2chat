@@ -85,7 +85,10 @@ export default class Bot {
         });
         const varLink = varLinks.find(op => op.key);
 
-        if (!varLink && e.length === 1) {
+        if (e.length <= 0) {
+          convo.addMessage(last, threadId);
+          convo.addAction('complete', threadId);
+        } else if (!varLink && e.length === 1) {
           convo.addMessage(last, threadId);
           convo.addAction(e[0].nodeId, threadId);
         } else {
@@ -101,7 +104,9 @@ export default class Bot {
               default: true,
               handler: async (res: any, conv: any, bot: any) => {
                 const confusedResponse = e.find(op => op.text.includes('confused'));
-                confusedResponse ? conv.gotoThread(confusedResponse.nodeId) : conv.repeat();
+                confusedResponse
+                  ? conv.gotoThread(confusedResponse.nodeId)
+                  : conv.repeat();
               },
             };
           }
