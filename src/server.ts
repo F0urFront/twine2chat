@@ -23,13 +23,15 @@ class App {
     this.init();
   }
 
-  init() {
-    this.bot = new Bot(this.telegramToken, this.webhookHost, this.storage);
+  init(webserver?: express.Application) {
+    this.bot = new Bot(this.telegramToken, this.webhookHost, this.storage, webserver);
     // this.app = express();
     this.app = this.bot.controller.webserver;
 
-    this.app.use(cors());
-    this.initializeRoutes();
+    if (!webserver) {
+      this.app.use(cors());
+      this.initializeRoutes();
+    }
 
     // this.app.use((req, res, next) => {
     //   console.log('middleware');
@@ -61,7 +63,7 @@ class App {
       await this.storage.write({ scriptGraph: serialize(story) });
 
       // delete this.bot;
-      this.init();
+      this.init(this.bot.controller.webserver);
 
       res.sendFile(path.join(__dirname, '..', 'public', 'experience.html'));
     });

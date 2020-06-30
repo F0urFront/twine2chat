@@ -1,5 +1,6 @@
 import { Botkit, BotkitConversation, BotWorker } from 'botkit';
 import { TelegramAdapter, TelegramEventTypeMiddleware } from 'botkit-adapter-telegram';
+import express from 'express';
 import { traverse, deserialize } from './twineGraph';
 import Storage from './storage';
 
@@ -26,7 +27,7 @@ function linkToIntent(link: string) {
 
 export default class Bot {
   controller: Botkit;
-  constructor(telegramToken: string, webhookHost: string, private storage: Storage) {
+  constructor(telegramToken: string, webhookHost: string, private storage: Storage, webserver?: express.Application) {
     const adapter = new TelegramAdapter({
       access_token: telegramToken,
       webhook_url_host_name: webhookHost,
@@ -36,6 +37,7 @@ export default class Bot {
 
     this.controller = new Botkit({
       // webserver_middlewares: [],
+      webserver,
       webhook_uri: '/api/messages',
       adapter,
       storage,
