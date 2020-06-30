@@ -1,6 +1,5 @@
 import { Botkit, BotkitConversation, BotWorker } from 'botkit';
 import { TelegramAdapter, TelegramEventTypeMiddleware } from 'botkit-adapter-telegram';
-import express from 'express';
 import { traverse, deserialize } from './twineGraph';
 import Storage from './storage';
 
@@ -29,7 +28,7 @@ function linkToIntent(link: string) {
 
 export default class Bot {
   controller: Botkit;
-  constructor(telegramToken: string, webhookHost: string, private storage: Storage, webserver?: express.Application) {
+  constructor(telegramToken: string, webhookHost: string, private storage: Storage) {
     const adapter = new TelegramAdapter({
       access_token: telegramToken,
       webhook_url_host_name: webhookHost,
@@ -39,14 +38,12 @@ export default class Bot {
 
     this.controller = new Botkit({
       // webserver_middlewares: [],
-      webserver,
       webhook_uri: '/api/messages',
       adapter,
       storage,
     });
 
     this.controller.middleware.send.use(middlewareDelay);
-    // this.controller.webserver.get('/api/messages', (req: any) => console.log(req));
 
     this.startConvo();
   }
@@ -145,9 +142,6 @@ export default class Bot {
       console.log('received message!');
       // load script
       try {
-        // this.controller.conversationState = new conversationState_1.BotkitConversationState(this.storage);
-        // const dialogState = this.conversationState.createProperty(this.getConfig('dialogStateProperty'));
-        // this.dialogSet = new botbuilder_dialogs_1.DialogSet(dialogState);
         // @ts-ignore
         if (this.controller.dialogSet.dialogs['experience']) {
           // @ts-ignore

@@ -23,27 +23,12 @@ class App {
     this.init();
   }
 
-  init(webserver?: express.Application) {
-    if (webserver && this.bot) {
-      // delete this.bot.controller;
-      delete this.bot;
-      this.bot = null;
-    }
-    this.bot = new Bot(this.telegramToken, this.webhookHost, this.storage, webserver);
-    // this.app = express();
+  init() {
+    this.bot = new Bot(this.telegramToken, this.webhookHost, this.storage);
     this.app = this.bot.controller.webserver;
 
-    if (!webserver) {
-      this.app.use(cors());
-      this.initializeRoutes();
-    }
-
-    // this.app.use((req, res, next) => {
-    //   console.log('middleware');
-    //   console.log(req);
-    //   console.log(res);
-    //   next();
-    // });
+    this.app.use(cors());
+    this.initializeRoutes();
   }
 
   // public listen() {
@@ -66,14 +51,6 @@ class App {
       await this.storage.deleteAll();
 
       await this.storage.write({ scriptGraph: serialize(story) });
-
-      // if (this.bot) {
-      //   let webserver = this.bot?.controller.webserver;
-      //   delete this.bot;
-      //   // this.init(this.bot?.controller.webserver);
-      //   this.init();
-      //   webserver = null;
-      // }
 
       res.sendFile(path.join(__dirname, '..', 'public', 'experience.html'));
     });
