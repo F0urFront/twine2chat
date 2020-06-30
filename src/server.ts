@@ -67,17 +67,15 @@ class App {
 
       await this.storage.write({ scriptGraph: serialize(story) });
 
-      // delete this.bot;
-      this.init(this.bot?.controller.webserver);
+      delete this.bot;
+      // this.init(this.bot?.controller.webserver);
+      this.init();
 
       res.sendFile(path.join(__dirname, '..', 'public', 'experience.html'));
     });
 
     this.app.get('/experience', (req, res) => {
-      res.json({
-        status: 'creating experience...',
-        url: 'http://www.creativelogic.me',
-      });
+      res.sendFile(path.join(__dirname, '..', 'public', 'experience.html'));
     });
   }
 }

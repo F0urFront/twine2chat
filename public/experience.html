@@ -5,30 +5,32 @@
   </head>
   <body>
     <h1>Twine 2 Chat</h1>
-    <h2 id="status">Experience created!</h2>
-    <p>Make sure you have created a <a href="https://t.me">Telegram</a> account by either downloading the app or visiting their browser chat <a href="https://web.telegram.org">https://web.telegram.org</a></p>
+    <h2 id="status">Please wait...</h2>
+    <br />
+    <p>When ready, make sure you have created a <a href="https://t.me">Telegram</a> account by either downloading the app or visiting their browser chat <a href="https://web.telegram.org">https://web.telegram.org</a></p>
     <p>On your phone or browser, go to https://t.me/meetpaigebot and open with Telegram app</p>
     <p>Alternatively, start a new message and search for MeetPaigeBot</p>
     <!-- <a id="chatLink" href="" target="_blank"></a> -->
   </body>
-  <!-- <script>
+  <script>
     function checkStatus() {
       setTimeout(async () => {
         const url = `${window.location.origin}/experience`;
         try {
-          const req = await fetch(url);
-          const exp = await req.json();
-          console.log(exp);
-          document.getElementById('status').innerHTML = exp.status;
-          document.getElementById('chatLink').innerHTML = "Chat now";
-          document.getElementById('chatLink').setAttribute('href', exp.url);
+          // const req = await fetch(url);
+          // const exp = await req.json();
+          // console.log(exp);
+          // document.getElementById('status').innerHTML = exp.status;
+          document.getElementById('status').innerHTML = 'Experience created!';
+          // document.getElementById('chatLink').innerHTML = "Chat now";
+          // document.getElementById('chatLink').setAttribute('href', exp.url);
         } catch (err) {
           console.error(err.message);
         }
-        checkStatus();
-      }, 2000);
+        // checkStatus();
+      }, 3000);
     }
 
     checkStatus();
-  </script> -->
+  </script>
 </html>
