@@ -16,11 +16,13 @@ async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: s
   } 
 }
 
-const yesPattern = 'yes|ya|yeah|yep|sure|ok|probably|yuh';
-const noPattern = 'no|nah|nope';
+const yesPattern = 'yes|ya|yeah|yep|sure|ok|probably|yuh|yeah';
+const noPattern = 'no|nah|nope|na';
 
-function linkToIntent(link: string) {
+function linkToPattern(link: string) {
   if (link.includes('no response')) return 'huh';
+  else if (link.includes('yes, short answer')) return yesPattern;
+  else if (link.includes('yes, detailed answer')) return yesPattern;
   else if (link.includes('yes')) return yesPattern;
   else if (link.includes('no')) return noPattern;
   return 'huh';
@@ -109,7 +111,7 @@ export default class Bot {
 
           convo.addQuestion(last, [
             ...e.map(op => ({
-              pattern: linkToIntent(op.text.substr(op.text.indexOf(" ") + 1)), // remove first word
+              pattern: linkToPattern(op.text.substr(op.text.indexOf(" ") + 1)), // remove first word
               handler: async (res: any, conv: any, bot: any) => conv.gotoThread(op.nodeId),
             })),
             def,
