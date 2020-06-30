@@ -51,7 +51,7 @@ export default class implements Storage {
   async deleteAll() {
     const res = await this.client.scan({ TableName: this.tableName }).promise();
     const items = res.Items;
-    if (!items) return;
+    if (!items || items.length <= 0) return;
 
     await this.client.batchWrite({ RequestItems: { [this.tableName]: items.map(i => ({
       DeleteRequest: { Key: { id: i.id } },
