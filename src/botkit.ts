@@ -8,6 +8,7 @@ import Storage from './storage';
 async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: string, chat_id: string }, next: () => void) {
   if (message.text.length > 0) {
     let time = message.text.length * 40;
+    console.log(bot.getConfig('activity'));
     // await bot.api.callAPI('sendChatAction', 'POST', { chat_id: message.chat_id, action: "typing" });
     await setTimeout(async ()=> { await next(); }, time);
   } else {
