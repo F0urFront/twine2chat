@@ -60,7 +60,7 @@ class App {
 
       await this.storage.write({ scriptGraph: serialize(story) });
 
-      delete this.bot;
+      // delete this.bot;
       this.init();
 
       res.sendFile(path.join(__dirname, '..', 'public', 'experience.html'));
