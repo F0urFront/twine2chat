@@ -145,6 +145,15 @@ export default class Bot {
       console.log('received message!');
       // load script
       try {
+        // this.controller.conversationState = new conversationState_1.BotkitConversationState(this.storage);
+        // const dialogState = this.conversationState.createProperty(this.getConfig('dialogStateProperty'));
+        // this.dialogSet = new botbuilder_dialogs_1.DialogSet(dialogState);
+        // @ts-ignore
+        if (this.controller.dialogSet.dialogs['experience']) {
+          // @ts-ignore
+          delete this.controller.dialogSet.dialogs['experience'];
+        }
+
         const { scriptGraph } = await this.storage.read(['scriptGraph']);
         console.log(scriptGraph);
         const story = deserialize(scriptGraph)

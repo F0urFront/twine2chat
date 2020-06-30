@@ -67,13 +67,13 @@ class App {
 
       await this.storage.write({ scriptGraph: serialize(story) });
 
-      if (this.bot) {
-        let webserver = this.bot?.controller.webserver;
-        delete this.bot;
-        // this.init(this.bot?.controller.webserver);
-        this.init();
-        webserver = null;
-      }
+      // if (this.bot) {
+      //   let webserver = this.bot?.controller.webserver;
+      //   delete this.bot;
+      //   // this.init(this.bot?.controller.webserver);
+      //   this.init();
+      //   webserver = null;
+      // }
 
       res.sendFile(path.join(__dirname, '..', 'public', 'experience.html'));
     });
