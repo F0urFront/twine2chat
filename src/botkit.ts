@@ -17,15 +17,10 @@ const yesPattern = 'yes|ya|yeah|yep|sure|ok|probably|yuh';
 const noPattern = 'no|nah|nope';
 
 function linkToIntent(link: string) {
-  switch (link) {
-    case 'yes':
-      return yesPattern;
-    case 'no':
-      return noPattern;
-    case 'no response':
-    default:
-      return 'huh';
-  }
+  if (link.includes('no response')) return 'huh';
+  else if (link.includes('yes')) return yesPattern;
+  else if (link.includes('no')) return noPattern;
+  return 'huh';
 }
 
 export default class Bot {
