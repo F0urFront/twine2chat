@@ -136,6 +136,7 @@ export default class Bot {
         const story = deserialize(scriptGraph)
         this.train(story);
       } catch (err) {
+        console.error(err.message);
         console.error('No script graph exists');
       }
     });
@@ -149,6 +150,7 @@ export default class Bot {
         const story = deserialize(scriptGraph)
         this.train(story);
       } catch (err) {
+        console.error(err.message);
         console.error('No script graph exists');
       }
 
