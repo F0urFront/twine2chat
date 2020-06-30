@@ -143,14 +143,14 @@ export default class Bot {
     this.controller.on(['message'], async (bot, message) => {
       console.log('received message!');
       // load script
-      // try {
-      //   const { scriptGraph } = await this.storage.read(['scriptGraph']);
-      //   console.log(scriptGraph);
-      //   const story = deserialize(scriptGraph)
-      //   this.train(story);
-      // } catch (err) {
-      //   console.error('No script graph exists');
-      // }
+      try {
+        const { scriptGraph } = await this.storage.read(['scriptGraph']);
+        console.log(scriptGraph);
+        const story = deserialize(scriptGraph)
+        this.train(story);
+      } catch (err) {
+        console.error('No script graph exists');
+      }
 
       await bot.beginDialog('experience');
     });
