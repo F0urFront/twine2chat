@@ -24,6 +24,7 @@ class App {
   }
 
   init(webserver?: express.Application) {
+    if (webserver && this.bot) delete this.bot;
     this.bot = new Bot(this.telegramToken, this.webhookHost, this.storage, webserver);
     // this.app = express();
     this.app = this.bot.controller.webserver;
