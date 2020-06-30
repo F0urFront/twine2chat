@@ -6,10 +6,10 @@
   "author": "Stephen Aldriedge",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --watch src --delay 1 --exec 'ts-node' src/index.ts",
+    "dev": "dotenv -- nodemon --watch src --delay 1 --exec 'ts-node' src/index.ts",
     "build": "tsc -b",
     "start": "NODE_ENV=production node dist/index.js",
-    "deploy": "",
+    "deploy": "dotenv -e .env.prod -- sls deploy",
     "test": "jest"
   },
   "devDependencies": {
@@ -17,19 +17,23 @@
     "@types/express": "^4.17.6",
     "@types/multer": "^1.4.3",
     "@types/xml2js": "^0.4.5",
+    "dotenv-cli": "^3.2.0",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
+    "serverless": "^1.74.0",
     "ts-node": "^8.10.2",
     "tsc": "^1.20150623.0",
     "typescript": "^3.9.5"
   },
   "dependencies": {
     "@dagrejs/graphlib": "^2.1.4",
-    "botbuilder-adapter-hangouts": "^1.0.7",
+    "aws-sdk": "^2.707.0",
+    "botbuilder-core": "^4.9.2",
     "botkit": "^4.9.0",
+    "botkit-adapter-telegram": "^0.1.9",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
     "multer": "^1.4.2",
+    "serverless-http": "^2.5.0",
     "xml2js": "^0.4.23"
   },
   "jest": {}

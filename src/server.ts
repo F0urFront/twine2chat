@@ -2,40 +2,50 @@ import util from 'util';
 import path from 'path';
 import fs from 'fs';
 import Bot from './botkit';
+import Storage from './storage';
 import express from 'express';
 import multer from 'multer';
 import cors from 'cors';
-import { convertStory } from './twineGraph';
+import { convertStory, serialize, deserialize } from './twineGraph';
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: '/tmp/' });
 const readFile = util.promisify(fs.readFile);
 
 
 class App {
   public app: express.Application;
-  public port: (string | number);
+  // public port: (string | number);
   public env: boolean;
   private bot: Bot;
+  private storage: Storage;
 
-  constructor(bot: Bot) {
-    this.app = express();
-    this.port = process.env.PORT || 4000;
+  constructor(bot: Bot, storage: Storage) {
+    // this.app = express();
+    this.app = bot.controller.webserver;
+    // this.port = process.env.WEB_PORT || 4000;
     this.env = process.env.NODE_ENV === 'production' ? true : false;
+
+    console.log(process.env.PORT);
 
     this.app.use(cors());
     this.initializeRoutes();
+
+    // this.app.use((req, res, next) => {
+    //   console.log('middleware');
+    //   console.log(req);
+    //   console.log(res);
+    //   next();
+    // });
+
     this.bot = bot;
+    this.storage = storage;
   }
 
-  public listen() {
-    this.app.listen(this.port, () => {
-      console.log(`🚀 App listening on the port ${this.port}`);
-    });
-  }
-
-  public getServer() {
-    return this.app;
-  }
+  // public listen() {
+  //   this.app.listen(this.port, () => {
+  //     console.log(`🚀 App listening on the port ${this.port}`);
+  //   });
+  // }
 
   private initializeRoutes() {
     this.app.get('/', (req, res) => {
@@ -47,9 +57,10 @@ class App {
 
       const story = await convertStory(twineFile);
 
-      // console.log(JSON.stringify(story, null, 2));
+      // delete everything first
+      await this.storage.deleteAll();
 
-      this.bot.train(story);
+      await this.storage.write({ scriptGraph: serialize(story) });
 
       res.sendFile(path.join(__dirname, '..', 'public', 'experience.html'));
     });

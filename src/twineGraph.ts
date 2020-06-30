@@ -1,6 +1,6 @@
 import { parseStringPromise } from 'xml2js';
 // @ts-ignore
-import { Graph } from '@dagrejs/graphlib';
+import { Graph, json as jsonGraph } from '@dagrejs/graphlib';
 
 
 // Adapted from https://raw.githubusercontent.com/lazerwalker/twison
@@ -74,4 +74,12 @@ export function traverse(graph: Graph, callback: (node: any, outEdges: any[]) =>
   const root = graph.sources()[0]; // should only be one
   const visited: any = {};
   _traverse(graph, root, callback, visited, true);
+}
+
+export function serialize(graph: Graph): string {
+  return jsonGraph.write(graph);
+}
+
+export function deserialize(json: string): Graph {
+  return jsonGraph.read(json);
 }

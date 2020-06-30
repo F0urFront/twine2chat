@@ -1,6 +1,7 @@
 import { Botkit, BotkitConversation } from 'botkit';
-const { HangoutsAdapter } = require('botbuilder-adapter-hangouts');
-import { traverse } from './twineGraph';
+import { TelegramAdapter, TelegramEventTypeMiddleware } from 'botkit-adapter-telegram';
+import { traverse, deserialize } from './twineGraph';
+import Storage from './storage';
 
 
 async function middlewareDelay(bot: any, message: { text: string }, next: () => void) {
@@ -29,27 +30,25 @@ function linkToIntent(link: string) {
 
 export default class Bot {
   controller: Botkit;
-  constructor(googleCreds: any) {
-    const adapter = new HangoutsAdapter({
-      // REMOVE THIS OPTION AFTER YOU HAVE CONFIGURED YOUR APP!
-      enable_incomplete: true,
-      
-      token: process.env.GOOGLE_TOKEN,
-      google_auth_params: {
-          credentials: googleCreds,
-      }
+  constructor(telegramToken: string, webhookHost: string, private storage: Storage) {
+    const adapter = new TelegramAdapter({
+      access_token: telegramToken,
+      webhook_url_host_name: webhookHost,
     });
+
+    // adapter.use(new TelegramEventTypeMiddleware());
 
     this.controller = new Botkit({
+      // webserver_middlewares: [],
       webhook_uri: '/api/messages',
-      // adapter,
+      adapter,
+      storage,
     });
 
-    this.controller.middleware.send.use(middlewareDelay);
+    // this.controller.middleware.send.use(middlewareDelay);
+    // this.controller.webserver.get('/api/messages', (req: any) => console.log(req));
 
-    this.controller.webserver.get('/bot', async (req: any, res: any) => {
-      res.send(`This app is running Botkit ${ this.controller.version }.`);
-    });
+    this.startConvo();
   }
 
   train(story: any) {
@@ -111,7 +110,6 @@ export default class Bot {
             };
           }
 
-          console.log(varKey);
           convo.addQuestion(last, [
             ...e.map(op => ({
               pattern: linkToIntent(op.text.substr(op.text.indexOf(" ") + 1)), // remove first word
@@ -121,17 +119,40 @@ export default class Bot {
           ], varKey, threadId);
         }
       }
-      
-      console.log(e);
     });
 
-    console.log(JSON.stringify(convo.script, null, 2));
     this.controller.addDialog(convo);
+    console.log('training finished');
+  }
 
-    this.controller.on(['bot_dm_join', 'channel_join', 'message', 'event'], async (bot, message) => {
+  startConvo() {
+    console.log('starting convo...');
+    this.controller.ready(async () => {
+      console.log('ready!');
+      // load script
+      try {
+        const { scriptGraph } = await this.storage.read(['scriptGraph']);
+        console.log(scriptGraph);
+        const story = deserialize(scriptGraph)
+        this.train(story);
+      } catch (err) {
+        console.error('No script graph exists');
+      }
+    });
+
+    this.controller.on(['message'], async (bot, message) => {
+      console.log('received message!');
+      // load script
+      // try {
+      //   const { scriptGraph } = await this.storage.read(['scriptGraph']);
+      //   console.log(scriptGraph);
+      //   const story = deserialize(scriptGraph)
+      //   this.train(story);
+      // } catch (err) {
+      //   console.error('No script graph exists');
+      // }
+
       await bot.beginDialog('experience');
     });
-
-    console.log('training finished');
   }
 }
