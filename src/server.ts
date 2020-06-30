@@ -13,19 +13,20 @@ const readFile = util.promisify(fs.readFile);
 
 
 class App {
+  // @ts-ignore
   public app: express.Application;
   // public port: (string | number);
-  public env: boolean;
+  // @ts-ignore
   private bot: Bot;
-  private storage: Storage;
 
-  constructor(bot: Bot, storage: Storage) {
+  constructor(private telegramToken: string, private webhookHost: string, private storage: Storage) {
+    this.init();
+  }
+
+  init() {
+    this.bot = new Bot(this.telegramToken, this.webhookHost, this.storage);
     // this.app = express();
-    this.app = bot.controller.webserver;
-    // this.port = process.env.WEB_PORT || 4000;
-    this.env = process.env.NODE_ENV === 'production' ? true : false;
-
-    console.log(process.env.PORT);
+    this.app = this.bot.controller.webserver;
 
     this.app.use(cors());
     this.initializeRoutes();
@@ -36,9 +37,6 @@ class App {
     //   console.log(res);
     //   next();
     // });
-
-    this.bot = bot;
-    this.storage = storage;
   }
 
   // public listen() {
@@ -61,6 +59,9 @@ class App {
       await this.storage.deleteAll();
 
       await this.storage.write({ scriptGraph: serialize(story) });
+
+      delete this.bot;
+      this.init();
 
       res.sendFile(path.join(__dirname, '..', 'public', 'experience.html'));
     });

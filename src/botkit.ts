@@ -68,7 +68,6 @@ export default class Bot {
         if (texts.length > 1) initial = texts.slice(0, texts.length - 1);
         const last = texts[texts.length - 1];
 
-        convo.addMessage({ action: 'typing_on' }, threadId);
         initial.forEach(t => convo.addMessage(t, threadId));
 
         let varKey = null;
