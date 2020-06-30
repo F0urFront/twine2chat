@@ -1,12 +1,13 @@
-import { Botkit, BotkitConversation } from 'botkit';
+import { Botkit, BotkitConversation, BotWorker } from 'botkit';
 import { TelegramAdapter, TelegramEventTypeMiddleware } from 'botkit-adapter-telegram';
 import { traverse, deserialize } from './twineGraph';
 import Storage from './storage';
 
 
-async function middlewareDelay(bot: any, message: { text: string }, next: () => void) {
-  if(message.text.length > 0){
-    let time = message.text.length * 50;
+async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: string, chat_id: string }, next: () => void) {
+  if (message.text.length > 0) {
+    let time = message.text.length * 40;
+    await bot.api.callAPI('sendChatAction', 'POST', { chat_id: message.chat_id, action: "typing" });
     await setTimeout(async ()=> { await next(); }, time);
   } else {
     await next();
@@ -40,7 +41,7 @@ export default class Bot {
       storage,
     });
 
-    // this.controller.middleware.send.use(middlewareDelay);
+    this.controller.middleware.send.use(middlewareDelay);
     // this.controller.webserver.get('/api/messages', (req: any) => console.log(req));
 
     this.startConvo();
