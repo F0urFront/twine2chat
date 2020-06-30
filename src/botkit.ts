@@ -8,7 +8,6 @@ async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: s
   if (message.text.length > 0) {
     let time = message.text.length * 40;
     // await bot.api.callAPI('sendChatAction', 'POST', { chat_id: message.chat_id, action: "typing" });
-    await bot.say({ sender_action: 'typing_on' });
     await setTimeout(async ()=> { await next(); }, time);
   } else {
     await next();
@@ -69,6 +68,8 @@ export default class Bot {
         if (texts.length > 1) initial = texts.slice(0, texts.length - 1);
         const last = texts[texts.length - 1];
 
+        // @ts-ignore
+        convo.addMessage({ sender_action: 'typing_on', action: 'typing_on' }, threadId);
         initial.forEach(t => convo.addMessage(t, threadId));
 
         let varKey = null;
