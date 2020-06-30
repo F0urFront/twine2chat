@@ -17,7 +17,7 @@ class App {
   public app: express.Application;
   // public port: (string | number);
   // @ts-ignore
-  private bot: Bot;
+  private bot: Bot|null;
 
   constructor(private telegramToken: string, private webhookHost: string, private storage: Storage) {
     this.init();
@@ -25,8 +25,9 @@ class App {
 
   init(webserver?: express.Application) {
     if (webserver && this.bot) {
-      delete this.bot.controller;
+      // delete this.bot.controller;
       delete this.bot;
+      this.bot = null;
     }
     this.bot = new Bot(this.telegramToken, this.webhookHost, this.storage, webserver);
     // this.app = express();
@@ -67,7 +68,7 @@ class App {
       await this.storage.write({ scriptGraph: serialize(story) });
 
       // delete this.bot;
-      this.init(this.bot.controller.webserver);
+      this.init(this.bot?.controller.webserver);
 
       res.sendFile(path.join(__dirname, '..', 'public', 'experience.html'));
     });
