@@ -1,0 +1,1053 @@
+{
+  "options": {
+    "directed": true,
+    "multigraph": true,
+    "compound": false
+  },
+  "nodes": [
+    {
+      "v": "1",
+      "value": {
+        "text": "📣 You are about to speak with a character in a story. Paige has a face, a voice, and a digital presence -- but she is not real. Would you like to talk to her? 📣",
+        "links": [
+          {
+            "link": "0.1A yes",
+            "name": "[[0.1A yes]]"
+          },
+          {
+            "link": "0.1B no",
+            "name": "[[0.1B no]]"
+          },
+          {
+            "link": "0.1C confused answer",
+            "name": "[[0.1C confused answer]]"
+          },
+          {
+            "link": "0.1D no response",
+            "name": "[[0.1D no response]]"
+          }
+        ],
+        "name": "0.1 Disclaimer",
+        "pid": "1",
+        "position": "540,25"
+      }
+    },
+    {
+      "v": "2",
+      "value": {
+        "text": "Hey, it's paige!\nyou made it. awesome! \nthought for a second i might have scared you off. \n...after what happened last night, nothing surprises me. (sad pensive emoji)\nwait, just to be sure. what’s your name again?",
+        "links": [
+          {
+            "link": "1.1A {NAME}",
+            "name": "[[1.1A {NAME}]]"
+          },
+          {
+            "link": "1.1B no response",
+            "name": "[[1.1B no response]]"
+          }
+        ],
+        "name": "0.1A yes",
+        "pid": "2",
+        "position": "419,340"
+      }
+    },
+    {
+      "v": "3",
+      "value": {
+        "text": "Are you sure? Paige could really use a friend right now.",
+        "links": [
+          {
+            "link": "0.1BI yes, bye",
+            "name": "[[0.1BI yes, bye]]"
+          },
+          {
+            "link": "0.1BII, no, i do want to talk to her",
+            "name": "[[0.1BII, no, i do want to talk to her]]"
+          }
+        ],
+        "name": "0.1B no",
+        "pid": "3",
+        "position": "627,172"
+      }
+    },
+    {
+      "v": "4",
+      "value": {
+        "text": "This is an experimental story between you and a virtual character. Would you like to know Paige’s secret?",
+        "links": [
+          {
+            "link": "0.1CI yes",
+            "name": "[[0.1CI yes]]"
+          },
+          {
+            "link": "0.1CII no",
+            "name": "[[0.1CII no]]"
+          }
+        ],
+        "name": "0.1C confused answer",
+        "pid": "4",
+        "position": "771,167"
+      }
+    },
+    {
+      "v": "5",
+      "value": {
+        "text": "We’ll take that as a yes! Now, Paige is taking over.",
+        "links": [
+          {
+            "link": "0.1A yes",
+            "name": "[[0.1A yes]]"
+          }
+        ],
+        "name": "0.1D no response",
+        "pid": "5",
+        "position": "468,171"
+      }
+    },
+    {
+      "v": "6",
+      "value": {
+        "text": "hi again, {NAME}.  \nlike i said, i’m paige.",
+        "links": [
+          {
+            "link": "Scene 2",
+            "name": "[[Scene 2]]"
+          }
+        ],
+        "name": "1.1A {NAME}",
+        "pid": "6",
+        "position": "346,481"
+      }
+    },
+    {
+      "v": "7",
+      "value": {
+        "text": "that’s cool, no worries. \nyou already know me. i’m paige.",
+        "links": [
+          {
+            "link": "Scene 2",
+            "name": "[[Scene 2]]"
+          }
+        ],
+        "name": "1.1B no response",
+        "pid": "7",
+        "position": "492,488"
+      }
+    },
+    {
+      "v": "8",
+      "value": {
+        "text": "so...i was about to tell you what happened with my friends.\nman. i don’t even know where to begin.\ni think it’d be easier if i recorded this. one sec.\n(sends 1.2 AUDIO MESSAGE)\nso...will you help me figure it out?",
+        "links": [
+          {
+            "link": "1.2A yes",
+            "name": "[[1.2A yes]]"
+          },
+          {
+            "link": "1.2B no",
+            "name": "[[1.2B no]]"
+          },
+          {
+            "link": "1.2C confused answer",
+            "name": "[[1.2C confused answer]]"
+          },
+          {
+            "link": "1.2D no response",
+            "name": "[[1.2D no response]]"
+          }
+        ],
+        "name": "Scene 2",
+        "pid": "8",
+        "position": "513,662"
+      }
+    },
+    {
+      "v": "9",
+      "value": {
+        "text": "ok, phew! 😅\ni’m so glad you’re sticking around, {NAME}. \nbecause i don’t think i can do this on my own.",
+        "links": [
+          {
+            "link": "Scene 3",
+            "name": "[[Scene 3]]"
+          }
+        ],
+        "name": "1.2A yes",
+        "pid": "9",
+        "position": "288,812"
+      }
+    },
+    {
+      "v": "10",
+      "value": {
+        "text": "😭 i understand, {NAME}.\nif you change your mind, i’m always here.",
+        "links": [],
+        "name": "1.2B no",
+        "pid": "10",
+        "position": "438,812"
+      }
+    },
+    {
+      "v": "11",
+      "value": {
+        "text": "i get it. i’d be confused if i were you too. \nhere’s what i’ll tell you though.\ni’m not afraid of looking in the mirror and finding the worst. \neven if we uncover something TERRIBLE about me... \ni’m ready to go there.\nif you’ll be there with me.",
+        "links": [
+          {
+            "link": "Scene 3",
+            "name": "[[Scene 3]]"
+          }
+        ],
+        "name": "1.2C confused answer",
+        "pid": "11",
+        "position": "588,812"
+      }
+    },
+    {
+      "v": "12",
+      "value": {
+        "text": "lol.\nnow you see why i was scared to tell you!\nwell, i hope you’re still around, {NAME}. \nbecause i don’t think i can do this without your help.",
+        "links": [
+          {
+            "link": "Scene 3",
+            "name": "[[Scene 3]]"
+          }
+        ],
+        "name": "1.2D no response",
+        "pid": "12",
+        "position": "738,812"
+      }
+    },
+    {
+      "v": "13",
+      "value": {
+        "text": "quick question. maybe you’re the expert.\nhas anything like this ever happened to you?\nhave you ever had a friend just...drop you for no reason? what did you do about it?",
+        "links": [
+          {
+            "link": "1.3A {STORY}",
+            "name": "[[1.3A {STORY}]]"
+          },
+          {
+            "link": "1.3B yes",
+            "name": "[[1.3B yes]]"
+          },
+          {
+            "link": "1.3C confused answer",
+            "name": "[[1.3C confused answer]]"
+          },
+          {
+            "link": "1.3D no response",
+            "name": "[[1.3D no response]]"
+          }
+        ],
+        "name": "Scene 3",
+        "pid": "13",
+        "position": "506,970"
+      }
+    },
+    {
+      "v": "14",
+      "value": {
+        "text": "oh wow.\ni’m so sorry that happened to you, {NAME}.\nbut maybe that’s why we found each other. we both get it.\nnow that you shared, i’m feeling way less nervous. so THANK YOU for that.\ni think it’s time i tell you about Niko...",
+        "links": [
+          {
+            "link": "Scene 4",
+            "name": "[[Scene 4]]"
+          }
+        ],
+        "name": "1.3A {STORY}",
+        "pid": "14",
+        "position": "281,1120"
+      }
+    },
+    {
+      "v": "15",
+      "value": {
+        "text": "i’m so sorry to hear that.\ni won’t pry. but if you ever want to tell me what happened, i’m here for you.\nso. i should probably tell you about Niko...",
+        "links": [
+          {
+            "link": "Scene 4",
+            "name": "[[Scene 4]]"
+          }
+        ],
+        "name": "1.3B yes",
+        "pid": "15",
+        "position": "431,1120"
+      }
+    },
+    {
+      "v": "16",
+      "value": {
+        "text": "my bad, i shouldn’t have asked.\none of these days, i need to learn how to be less nosy haha\nwhere were we? \nthat’s right. i was about to tell you about Niko...",
+        "links": [
+          {
+            "link": "Scene 4",
+            "name": "[[Scene 4]]"
+          }
+        ],
+        "name": "1.3C confused answer",
+        "pid": "16",
+        "position": "581,1120"
+      }
+    },
+    {
+      "v": "17",
+      "value": {
+        "text": "you’re lucky. \nbeing ghosted is one of the worst feelings in the world.\nespecially when your best friend does it to you. \ni should probably tell you about Niko...",
+        "links": [
+          {
+            "link": "Scene 4",
+            "name": "[[Scene 4]]"
+          }
+        ],
+        "name": "1.3D no response",
+        "pid": "17",
+        "position": "731,1120"
+      }
+    },
+    {
+      "v": "18",
+      "value": {
+        "text": "you know how some people have like x-ray vision? and see you. i mean -- really see you? \nyeah. that’s Niko.\nwe’ve been best friends for YEARS.\nwhen you watch this, you’ll see what i mean: \n(sends VIDEO MESSAGE 1.4)\nwe made that video 3 days ago. \nso what happened between then and last night? \nlook at this.\n(sends PHOTO MESSAGE 1.4)\nidk. maybe i’m too close to this and can’t read between the lines. \nwhen you look at those texts, what do you see? \ndid i say something wrong?",
+        "links": [
+          {
+            "link": "1.4A yes, detailed answer",
+            "name": "[[1.4A yes, detailed answer]]"
+          },
+          {
+            "link": "1.4B yes, short answer",
+            "name": "[[1.4B yes, short answer]]"
+          },
+          {
+            "link": "1.4C confused answer",
+            "name": "[[1.4C confused answer]]"
+          },
+          {
+            "link": "1.4D no response",
+            "name": "[[1.4D no response]]"
+          }
+        ],
+        "name": "Scene 4",
+        "pid": "18",
+        "position": "507,1286"
+      }
+    },
+    {
+      "v": "19",
+      "value": {
+        "text": "oh. 😟\nugh. i feel like an idiot. \nstill, i know Niko and he wouldn’t BLOCK me over something dumb like this...\nthere must be something else.",
+        "links": [
+          {
+            "link": "Scene 5",
+            "name": "[[Scene 5]]"
+          }
+        ],
+        "name": "1.4A yes, detailed answer",
+        "pid": "19",
+        "position": "282,1436"
+      }
+    },
+    {
+      "v": "20",
+      "value": {
+        "text": "oh. 😕\nwell yeah, now that I look at it, i see lots of potential mistakes.\nbut i don’t think i deserved to be BLOCKED for them...\nthere must be something else.",
+        "links": [
+          {
+            "link": "Scene 5",
+            "name": "[[Scene 5]]"
+          }
+        ],
+        "name": "1.4B yes, short answer",
+        "pid": "20",
+        "position": "432,1436"
+      }
+    },
+    {
+      "v": "21",
+      "value": {
+        "text": "🤯\nok. maybe we’re overanalyzing everything.\ni know Niko and he wouldn’t BLOCK me over a few dumb texts...\nthere must be something else.",
+        "links": [
+          {
+            "link": "Scene 5",
+            "name": "[[Scene 5]]"
+          }
+        ],
+        "name": "1.4C confused answer",
+        "pid": "21",
+        "position": "582,1436"
+      }
+    },
+    {
+      "v": "22",
+      "value": {
+        "text": "no? \nthat is a relief. 😁\ni totally agree.\nNiko wouldn’t BLOCK me over a few dumb texts...\nthere must be something else.",
+        "links": [
+          {
+            "link": "Scene 5",
+            "name": "[[Scene 5]]"
+          }
+        ],
+        "name": "1.4D no response",
+        "pid": "22",
+        "position": "733,1436"
+      }
+    },
+    {
+      "v": "23",
+      "value": {
+        "text": "don’t worry.\ni’m not going to make you figure it out right now.\ni know there are bigger issues in the world than my friends ghosting me 😂\nin the back of my head, i’m still hoping that somebody is going to be like: “gotcha!” \n...what if that never happens though?\nwhat if I never hear back from Niko?\nif my favorite person has blocked me for good, then...i really am alone 😩\nhey {NAME}, since you’ve been so kind...will you be honest with me? \nSends VIDEO MESSAGE 1.5\nDo you think I’m a bad person?",
+        "links": [
+          {
+            "link": "1.5A yes",
+            "name": "[[1.5A yes]]"
+          },
+          {
+            "link": "1.5B no",
+            "name": "[[1.5B no]]"
+          },
+          {
+            "link": "1.5C confused answer",
+            "name": "[[1.5C confused answer]]"
+          },
+          {
+            "link": "1.5D, no answer",
+            "name": "[[1.5D, no answer]]"
+          }
+        ],
+        "name": "Scene 5",
+        "pid": "23",
+        "position": "488,1588"
+      }
+    },
+    {
+      "v": "24",
+      "value": {
+        "text": "ouch.\nwell, i appreciate your honesty.\ni know i’m FAR from perfect. but...\neverybody deserves friendship, right?",
+        "links": [
+          {
+            "link": "Scene 6",
+            "name": "[[Scene 6]]"
+          }
+        ],
+        "name": "1.5A yes",
+        "pid": "24",
+        "position": "262,1738"
+      }
+    },
+    {
+      "v": "25",
+      "value": {
+        "text": "😊\nthat is kind of you. even if you’re lying, i appreciate it. seriously. \nthat’s whats having friends is all about, right?",
+        "links": [
+          {
+            "link": "Scene 6",
+            "name": "[[Scene 6]]"
+          }
+        ],
+        "name": "1.5B no",
+        "pid": "25",
+        "position": "413,1738"
+      }
+    },
+    {
+      "v": "26",
+      "value": {
+        "text": "sorry, nvm haha.\ni’m all over the place right now.\nif only my friends were around to call me out. haha.",
+        "links": [
+          {
+            "link": "Scene 6",
+            "name": "[[Scene 6]]"
+          }
+        ],
+        "name": "1.5C confused answer",
+        "pid": "26",
+        "position": "563,1738"
+      }
+    },
+    {
+      "v": "27",
+      "value": {
+        "text": "...i’ll take that as a maybe? \n🙃 i can live with that.",
+        "links": [
+          {
+            "link": "Scene 6",
+            "name": "[[Scene 6]]"
+          }
+        ],
+        "name": "1.5D, no answer",
+        "pid": "27",
+        "position": "713,1738"
+      }
+    },
+    {
+      "v": "28",
+      "value": {
+        "text": "soooo, tbh, i’m pretty drained right now.\nlosing all your friends in one day is surprisingly exhausting! go figure.\nbut i’d love to talk more tomorrow. \ni know i can be a bit...chatty. i never quite know when to stop. but the fact that you’ve been willing to listen? it means a lot.\nit’s nice having a new friend around. (basic smiley)\nactually...that just gave me an idea.\nreally quick before i go, do you have any nice friends who might also want to help me through this?",
+        "links": [
+          {
+            "link": "1.6A yes",
+            "name": "[[1.6A yes]]"
+          },
+          {
+            "link": "1.6B no",
+            "name": "[[1.6B no]]"
+          },
+          {
+            "link": "1.6D no  answer",
+            "name": "[[1.6D no  answer]]"
+          },
+          {
+            "link": "1.6E {REFERRAL}",
+            "name": "[[1.6E {REFERRAL}]]"
+          },
+          {
+            "link": "1.6C confused answer",
+            "name": "[[1.6C confused answer]]"
+          }
+        ],
+        "name": "Scene 6",
+        "pid": "28",
+        "position": "466,1886"
+      }
+    },
+    {
+      "v": "29",
+      "value": {
+        "text": "awesome! go ahead and share my profile with them\n(insert Snapchat link to her profile)\nlmk when you’ve done that and i’ll send you Niko’s Instagram handle!\nthat way you can check him out for yourself. who knows. you just might figure out what i did wrong... 🕵🏼‍\nno pressure 😉",
+        "links": [
+          {
+            "link": "Scene 7",
+            "name": "[[Scene 7]]"
+          }
+        ],
+        "name": "1.6A yes",
+        "pid": "29",
+        "position": "236,2036"
+      }
+    },
+    {
+      "v": "30",
+      "value": {
+        "text": "awwww. too bad. \nwell, if you think of someone, just share my profile with them:\n(insert Snapchat link to her profile)\nlmk when you’ve done that and i’ll send you Niko’s Instagram handle!\nthat way you can check him out for yourself. who knows. you just might figure out what i did wrong... 🕵🏼‍\nno pressure 😉",
+        "links": [
+          {
+            "link": "Scene 7",
+            "name": "[[Scene 7]]"
+          }
+        ],
+        "name": "1.6B no",
+        "pid": "30",
+        "position": "356,2036"
+      }
+    },
+    {
+      "v": "31",
+      "value": {
+        "text": "haha. awk silence.\nwell, i’ll tell you what to do just in case. \njust share my profile with them:\n(insert Snapchat link to her profile)\nlmk when you’ve done that and i’ll send you Niko’s Instagram handle!\nthat way you can check him out for yourself. who knows. you just might figure out what i did wrong... 🕵🏼‍\nno pressure 😉",
+        "links": [
+          {
+            "link": "Scene 7",
+            "name": "[[Scene 7]]"
+          }
+        ],
+        "name": "1.6D no  answer",
+        "pid": "31",
+        "position": "628,2039"
+      }
+    },
+    {
+      "v": "32",
+      "value": {
+        "text": "omg. thank you so much for sharing!!!\nyou’re helping me make REAL friends. it’s amazing.\nhere is Niko’s Instagram account as promised:\n(insert link {NIKO_INSTAGRAM})\nLMK if you find anything interesting...",
+        "links": [
+          {
+            "link": "Scene 7",
+            "name": "[[Scene 7]]"
+          }
+        ],
+        "name": "1.6E {REFERRAL}",
+        "pid": "32",
+        "position": "754,2035"
+      }
+    },
+    {
+      "v": "33",
+      "value": {
+        "text": "haha i know. it’s a lot to ask. \nhere, i’ll make it simple. just share my profile with them:\n(insert Snapchat link to her profile)\nlmk when you’ve done that and i’ll send you Niko’s Instagram handle!\nthat way you can check him out for yourself. who knows. you just might figure out what i did wrong... 🕵🏼‍\nno pressure 😉",
+        "links": [
+          {
+            "link": "Scene 7",
+            "name": "[[Scene 7]]"
+          }
+        ],
+        "name": "1.6C confused answer",
+        "pid": "33",
+        "position": "484,2036"
+      }
+    },
+    {
+      "v": "34",
+      "value": {
+        "text": "ok, friend. thanks!\nbye for real now. ✌🏻",
+        "links": [],
+        "name": "Scene 7",
+        "pid": "34",
+        "position": "507,2190"
+      }
+    },
+    {
+      "v": "35",
+      "value": {
+        "text": "We understand, Paige is here if you change your mind!",
+        "links": [],
+        "name": "0.1BI yes, bye",
+        "pid": "35",
+        "position": "873,506"
+      }
+    },
+    {
+      "v": "36",
+      "value": {
+        "text": null,
+        "links": [
+          {
+            "link": "0.1A yes",
+            "name": "[[0.1A yes]]"
+          }
+        ],
+        "name": "0.1BII, no, i do want to talk to her",
+        "pid": "36",
+        "position": "624,342"
+      }
+    },
+    {
+      "v": "37",
+      "value": {
+        "text": null,
+        "links": [
+          {
+            "link": "0.1A yes",
+            "name": "[[0.1A yes]]"
+          }
+        ],
+        "name": "0.1CI yes",
+        "pid": "37",
+        "position": "800,335"
+      }
+    },
+    {
+      "v": "38",
+      "value": {
+        "text": null,
+        "links": [
+          {
+            "link": "0.1BI yes, bye",
+            "name": "[[0.1BI yes, bye]]"
+          }
+        ],
+        "name": "0.1CII no",
+        "pid": "38",
+        "position": "939,339"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "v": "1",
+      "w": "2",
+      "value": {
+        "text": "0.1A yes"
+      }
+    },
+    {
+      "v": "1",
+      "w": "3",
+      "value": {
+        "text": "0.1B no"
+      }
+    },
+    {
+      "v": "1",
+      "w": "4",
+      "value": {
+        "text": "0.1C confused answer"
+      }
+    },
+    {
+      "v": "1",
+      "w": "5",
+      "value": {
+        "text": "0.1D no response"
+      }
+    },
+    {
+      "v": "2",
+      "w": "6",
+      "value": {
+        "text": "1.1A {NAME}"
+      }
+    },
+    {
+      "v": "2",
+      "w": "7",
+      "value": {
+        "text": "1.1B no response"
+      }
+    },
+    {
+      "v": "3",
+      "w": "35",
+      "value": {
+        "text": "0.1BI yes, bye"
+      }
+    },
+    {
+      "v": "3",
+      "w": "36",
+      "value": {
+        "text": "0.1BII, no, i do want to talk to her"
+      }
+    },
+    {
+      "v": "4",
+      "w": "37",
+      "value": {
+        "text": "0.1CI yes"
+      }
+    },
+    {
+      "v": "4",
+      "w": "38",
+      "value": {
+        "text": "0.1CII no"
+      }
+    },
+    {
+      "v": "5",
+      "w": "2",
+      "value": {
+        "text": "0.1A yes"
+      }
+    },
+    {
+      "v": "6",
+      "w": "8",
+      "value": {
+        "text": "Scene 2"
+      }
+    },
+    {
+      "v": "7",
+      "w": "8",
+      "value": {
+        "text": "Scene 2"
+      }
+    },
+    {
+      "v": "8",
+      "w": "9",
+      "value": {
+        "text": "1.2A yes"
+      }
+    },
+    {
+      "v": "8",
+      "w": "10",
+      "value": {
+        "text": "1.2B no"
+      }
+    },
+    {
+      "v": "8",
+      "w": "11",
+      "value": {
+        "text": "1.2C confused answer"
+      }
+    },
+    {
+      "v": "8",
+      "w": "12",
+      "value": {
+        "text": "1.2D no response"
+      }
+    },
+    {
+      "v": "9",
+      "w": "13",
+      "value": {
+        "text": "Scene 3"
+      }
+    },
+    {
+      "v": "11",
+      "w": "13",
+      "value": {
+        "text": "Scene 3"
+      }
+    },
+    {
+      "v": "12",
+      "w": "13",
+      "value": {
+        "text": "Scene 3"
+      }
+    },
+    {
+      "v": "13",
+      "w": "14",
+      "value": {
+        "text": "1.3A {STORY}"
+      }
+    },
+    {
+      "v": "13",
+      "w": "15",
+      "value": {
+        "text": "1.3B yes"
+      }
+    },
+    {
+      "v": "13",
+      "w": "16",
+      "value": {
+        "text": "1.3C confused answer"
+      }
+    },
+    {
+      "v": "13",
+      "w": "17",
+      "value": {
+        "text": "1.3D no response"
+      }
+    },
+    {
+      "v": "14",
+      "w": "18",
+      "value": {
+        "text": "Scene 4"
+      }
+    },
+    {
+      "v": "15",
+      "w": "18",
+      "value": {
+        "text": "Scene 4"
+      }
+    },
+    {
+      "v": "16",
+      "w": "18",
+      "value": {
+        "text": "Scene 4"
+      }
+    },
+    {
+      "v": "17",
+      "w": "18",
+      "value": {
+        "text": "Scene 4"
+      }
+    },
+    {
+      "v": "18",
+      "w": "19",
+      "value": {
+        "text": "1.4A yes, detailed answer"
+      }
+    },
+    {
+      "v": "18",
+      "w": "20",
+      "value": {
+        "text": "1.4B yes, short answer"
+      }
+    },
+    {
+      "v": "18",
+      "w": "21",
+      "value": {
+        "text": "1.4C confused answer"
+      }
+    },
+    {
+      "v": "18",
+      "w": "22",
+      "value": {
+        "text": "1.4D no response"
+      }
+    },
+    {
+      "v": "19",
+      "w": "23",
+      "value": {
+        "text": "Scene 5"
+      }
+    },
+    {
+      "v": "20",
+      "w": "23",
+      "value": {
+        "text": "Scene 5"
+      }
+    },
+    {
+      "v": "21",
+      "w": "23",
+      "value": {
+        "text": "Scene 5"
+      }
+    },
+    {
+      "v": "22",
+      "w": "23",
+      "value": {
+        "text": "Scene 5"
+      }
+    },
+    {
+      "v": "23",
+      "w": "24",
+      "value": {
+        "text": "1.5A yes"
+      }
+    },
+    {
+      "v": "23",
+      "w": "25",
+      "value": {
+        "text": "1.5B no"
+      }
+    },
+    {
+      "v": "23",
+      "w": "26",
+      "value": {
+        "text": "1.5C confused answer"
+      }
+    },
+    {
+      "v": "23",
+      "w": "27",
+      "value": {
+        "text": "1.5D, no answer"
+      }
+    },
+    {
+      "v": "24",
+      "w": "28",
+      "value": {
+        "text": "Scene 6"
+      }
+    },
+    {
+      "v": "25",
+      "w": "28",
+      "value": {
+        "text": "Scene 6"
+      }
+    },
+    {
+      "v": "26",
+      "w": "28",
+      "value": {
+        "text": "Scene 6"
+      }
+    },
+    {
+      "v": "27",
+      "w": "28",
+      "value": {
+        "text": "Scene 6"
+      }
+    },
+    {
+      "v": "28",
+      "w": "29",
+      "value": {
+        "text": "1.6A yes"
+      }
+    },
+    {
+      "v": "28",
+      "w": "30",
+      "value": {
+        "text": "1.6B no"
+      }
+    },
+    {
+      "v": "28",
+      "w": "31",
+      "value": {
+        "text": "1.6D no  answer"
+      }
+    },
+    {
+      "v": "28",
+      "w": "32",
+      "value": {
+        "text": "1.6E {REFERRAL}"
+      }
+    },
+    {
+      "v": "28",
+      "w": "33",
+      "value": {
+        "text": "1.6C confused answer"
+      }
+    },
+    {
+      "v": "29",
+      "w": "34",
+      "value": {
+        "text": "Scene 7"
+      }
+    },
+    {
+      "v": "30",
+      "w": "34",
+      "value": {
+        "text": "Scene 7"
+      }
+    },
+    {
+      "v": "31",
+      "w": "34",
+      "value": {
+        "text": "Scene 7"
+      }
+    },
+    {
+      "v": "32",
+      "w": "34",
+      "value": {
+        "text": "Scene 7"
+      }
+    },
+    {
+      "v": "33",
+      "w": "34",
+      "value": {
+        "text": "Scene 7"
+      }
+    },
+    {
+      "v": "36",
+      "w": "2",
+      "value": {
+        "text": "0.1A yes"
+      }
+    },
+    {
+      "v": "37",
+      "w": "2",
+      "value": {
+        "text": "0.1A yes"
+      }
+    },
+    {
+      "v": "38",
+      "w": "35",
+      "value": {
+        "text": "0.1BI yes, bye"
+      }
+    }
+  ]
+}
