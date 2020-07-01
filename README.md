@@ -5,7 +5,7 @@
 - Botkit
 
 ## How it works
-This tool uses Express and Botkit to deploy a bot server that communicates with Telegram messaging. Visiting the root path allows you to upload a Twine HTML file which will "train" the bot with story dialog. Once trained, you can interact with the bot through Telegram and navigate the story based on your responses to the bot.
+This tool uses Express and Botkit to deploy a bot server that communicates with Telegram messaging. Visiting the root path allows you to upload a Twine HTML file which will "train" the bot with story dialog. This works by first converting the Twine to a graph object, then traversing the graph with Botkit dialog/thread building API. Once trained, you can interact with the bot through Telegram and navigate the story based on your responses to the bot.
 
 ## Twine file
 ### Assumptions
