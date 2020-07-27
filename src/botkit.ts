@@ -9,11 +9,12 @@ const processing: any = {};
 async function middlewareMultiResponse(bot: BotWorker & { api: any }, message: { text: string, chat_id: string }, next: () => void) {
   const activity = bot.getConfig('activity');
   console.log(activity);
-  console.log(activity.conversation.id);
 
   // console.log(message);
   // if we have already received a response, ignore additional responses
+  console.log(`checking ${activity.conversation.id}`);
   if (processing[activity.conversation.id]) {
+    console.log('changing message!');
     // @ts-expect-error
     message.text = null;
     // @ts-expect-error
@@ -33,13 +34,13 @@ async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: s
     let time = message.text.length * 40;
     const activity = bot.getConfig('activity');
 
-
     processing[activity.conversation.id] = true;
+    console.log(`locked ${activity.conversation.id}`);
 
-    console.log(activity.conversation.id);
     await bot.api.callAPI('sendChatAction', 'POST', { chat_id: activity.conversation.id, action: "typing" });
     await setTimeout(async ()=> { await next(); }, time);
     processing[activity.conversation.id] = false;
+    console.log(`unlocked ${activity.conversation.id}`);
   } else {
     await next();
   } 
