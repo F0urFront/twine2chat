@@ -34,12 +34,12 @@ async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: s
     let time = message.text.length * 40;
     const activity = bot.getConfig('activity');
 
-    // processing[activity.conversation.id] = true;
+    processing[activity.conversation.id] = true;
     console.log(`locked ${activity.conversation.id}`);
 
     await bot.api.callAPI('sendChatAction', 'POST', { chat_id: activity.conversation.id, action: "typing" });
     await setTimeout(async () => {
-      // processing[activity.conversation.id] = false;
+      processing[activity.conversation.id] = false;
       console.log(`unlocked ${activity.conversation.id}`);
       await next();
     }, time);
