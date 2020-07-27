@@ -8,7 +8,7 @@ const processing: any = {};
 
 async function middlewareMultiResponse(bot: BotWorker & { api: any }, message: { text: string, chat_id: string }, next: () => void) {
   const activity = bot.getConfig('activity');
-  console.log(activity);
+  // console.log(activity);
 
   // console.log(message);
   // if we have already received a response, ignore additional responses
@@ -24,7 +24,7 @@ async function middlewareMultiResponse(bot: BotWorker & { api: any }, message: {
     // @ts-expect-error
     message.incoming_message = null;
   }
-  console.log(message);
+  // console.log(message);
 
   await next();
 }
@@ -34,12 +34,12 @@ async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: s
     let time = message.text.length * 40;
     const activity = bot.getConfig('activity');
 
-    processing[activity.conversation.id] = true;
+    // processing[activity.conversation.id] = true;
     console.log(`locked ${activity.conversation.id}`);
 
     await bot.api.callAPI('sendChatAction', 'POST', { chat_id: activity.conversation.id, action: "typing" });
     await setTimeout(async ()=> { await next(); }, time);
-    processing[activity.conversation.id] = false;
+    // processing[activity.conversation.id] = false;
     console.log(`unlocked ${activity.conversation.id}`);
   } else {
     await next();
