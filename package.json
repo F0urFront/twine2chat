@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "dotenv -- nodemon --watch src --delay 1 --exec 'ts-node' src/index.ts",
     "build": "tsc -b",
-    "start": "NODE_ENV=production node dist/index.js",
+    "start": "NODE_ENV=production node dist/src/index.js",
     "deploy": "dotenv -e .env.prod -- sls deploy",
     "test": "jest"
   },
