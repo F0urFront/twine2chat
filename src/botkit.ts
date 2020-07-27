@@ -14,7 +14,8 @@ async function middlewareMultiResponse(bot: BotWorker & { api: any }, message: {
   console.log(message);
   // if we have already received a response, ignore additional responses
   if (processing[activity.conversation.id]) {
-    return;
+    // @ts-expect-error
+    message.text = null;
   }
 
   await next();
