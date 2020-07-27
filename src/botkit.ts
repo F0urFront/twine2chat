@@ -6,15 +6,25 @@ import Storage from './storage';
 
 const processing: any = {};
 
+async function middlewareMultiResponse(bot: BotWorker & { api: any }, message: { text: string, chat_id: string }, next: () => void) {
+  const activity = bot.getConfig('activity');
+  console.log(activity);
+  console.log(activity.conversation.id);
+
+  console.log(message);
+  // if we have already received a response, ignore additional responses
+  if (processing[activity.conversation.id]) {
+    return;
+  }
+
+  await next();
+}
+
 async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: string, chat_id: string }, next: () => void) {
   if (message.text.length > 0) {
     let time = message.text.length * 40;
     const activity = bot.getConfig('activity');
 
-    // if we have already received a response, ignore additional responses
-    if (processing[activity.conversation.id]) {
-      return;
-    }
 
     processing[activity.conversation.id] = true;
 
@@ -56,6 +66,7 @@ export default class Bot {
       storage,
     });
 
+    this.controller.middleware.ingest.use(middlewareMultiResponse);
     this.controller.middleware.send.use(middlewareDelay);
 
     this.startConvo();
