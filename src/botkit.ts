@@ -4,13 +4,24 @@ import { traverse, deserialize } from './twineGraph';
 import Storage from './storage';
 
 
+const processing: any = {};
+
 async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: string, chat_id: string }, next: () => void) {
   if (message.text.length > 0) {
     let time = message.text.length * 40;
     const activity = bot.getConfig('activity');
+
+    // if we have already received a response, ignore additional responses
+    if (processing[activity.conversation.id]) {
+      return;
+    }
+
+    processing[activity.conversation.id] = true;
+
     console.log(activity.conversation.id);
     await bot.api.callAPI('sendChatAction', 'POST', { chat_id: activity.conversation.id, action: "typing" });
     await setTimeout(async ()=> { await next(); }, time);
+    processing[activity.conversation.id] = false;
   } else {
     await next();
   } 
@@ -108,6 +119,8 @@ export default class Bot {
               },
             };
           }
+
+          convo.addMessage({ text: 'yo', attachments: [{}] });
 
           convo.addQuestion(last, [
             ...e.map(op => ({
