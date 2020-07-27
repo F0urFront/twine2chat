@@ -120,8 +120,6 @@ export default class Bot {
             };
           }
 
-          convo.addMessage({ text: 'yo', attachments: [{}] });
-
           convo.addQuestion(last, [
             ...e.map(op => ({
               pattern: linkToPattern(op.text.substr(op.text.indexOf(" ") + 1)), // remove first word
