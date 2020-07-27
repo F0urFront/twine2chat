@@ -4,7 +4,7 @@ import { traverse, deserialize } from './twineGraph';
 import Storage from './storage';
 
 
-const processing: any = {};
+// const processing: any = {};
 
 async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: string, chat_id: string }, next: () => void) {
   if (message.text.length > 0) {
@@ -12,16 +12,16 @@ async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: s
     const activity = bot.getConfig('activity');
 
     // if we have already received a response, ignore additional responses
-    if (processing[activity.conversation.id]) {
-      return;
-    }
+    // if (processing[activity.conversation.id]) {
+    //   return;
+    // }
 
-    processing[activity.conversation.id] = true;
+    // processing[activity.conversation.id] = true;
 
     console.log(activity.conversation.id);
     await bot.api.callAPI('sendChatAction', 'POST', { chat_id: activity.conversation.id, action: "typing" });
     await setTimeout(async ()=> { await next(); }, time);
-    processing[activity.conversation.id] = false;
+    // processing[activity.conversation.id] = false;
   } else {
     await next();
   } 
