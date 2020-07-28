@@ -31,21 +31,20 @@ async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: s
       processing[activity.conversation.id] = false;
       console.log(`unlocked ${activity.conversation.id}`);
       console.log(message.text);
-      if (message.text.includes('VIDEO MESSAGE')) {
-        const res = await bot.api.callAPI('sendVideo', 'POST', { chat_id: activity.conversation.id, video: 'https://drive.google.com/uc?export=download&id=1wOH5ASPJDSs1oIWQnWHIziSNG4T-GGAJ' });
+      if (message.text.includes('VIDEO-MESSAGE:')) {
+        const url = message.text.replace('VIDEO-MESSAGE:', '');
+        const res = await bot.api.callAPI('sendVideo', 'POST', { chat_id: activity.conversation.id, video: url });
         message.text = '';
       }
-      if (message.text.includes('AUDIO MESSAGE')) {
-        console.log('sending audio...');
-        const res = await bot.api.callAPI('sendAudio', 'POST', { chat_id: activity.conversation.id, audio: 'https://drive.google.com/uc?export=download&id=1b3BE9-v8_J2PUrmCKsNU4AW-HmoD6C10' });
+      if (message.text.includes('AUDIO-MESSAGE:')) {
+        const url = message.text.replace('AUDIO-MESSAGE:', '');
+        const res = await bot.api.callAPI('sendAudio', 'POST', { chat_id: activity.conversation.id, audio: url });
         message.text = '';
-        console.log(res);
       }
-      if (message.text.includes('PHOTO MESSAGE')) {
-        console.log('sending audio...');
-        const res = await bot.api.callAPI('sendPhoto', 'POST', { chat_id: activity.conversation.id, photo: 'https://drive.google.com/uc?export=download&id=17W-oMNQqIm_x1c2shIN_VxizctZgiQCO' });
+      if (message.text.includes('PHOTO-MESSAGE:')) {
+        const url = message.text.replace('PHOTO-MESSAGE:', '');
+        const res = await bot.api.callAPI('sendPhoto', 'POST', { chat_id: activity.conversation.id, photo: url });
         message.text = '';
-        console.log(res);
       }
 
       await next();
