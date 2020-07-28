@@ -30,8 +30,12 @@ async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: s
     await setTimeout(async () => {
       processing[activity.conversation.id] = false;
       console.log(`unlocked ${activity.conversation.id}`);
+      console.log(message.text);
       if (message.text.includes('VIDEO MESSAGE')) {
-        await bot.api.callAPI('sendVideo', 'POST', { chat_id: activity.conversation.id, video: 'https://drive.google.com/file/d/1uCppSOnpIFGMaW-FH3903Gvogaob0SeD/view' });
+        console.log('sending video...');
+        const res = await bot.api.callAPI('sendVideo', 'POST', { chat_id: activity.conversation.id, video: 'https://drive.google.com/file/d/1uCppSOnpIFGMaW-FH3903Gvogaob0SeD/view' });
+        console.log('video sent');
+        console.log(res);
       }
       await next();
     }, time);
