@@ -33,7 +33,7 @@ async function middlewareDelay(bot: BotWorker & { api: any }, message: { text: s
       console.log(message.text);
       if (message.text.includes('VIDEO MESSAGE')) {
         console.log('sending video...');
-        const res = await bot.api.callAPI('sendVideo', 'POST', { chat_id: activity.conversation.id, video: 'https://drive.google.com/file/d/1uCppSOnpIFGMaW-FH3903Gvogaob0SeD/view' });
+        const res = await bot.api.callAPI('sendVideo', 'POST', { chat_id: activity.conversation.id, video: 'https://drive.google.com/uc?export=download&id=1lv3pM5ugRKJ99ddugwbt7eK--P2-BLZ-' });
         console.log('video sent');
         console.log(res);
       }
