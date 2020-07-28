@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "dotenv -- nodemon --watch src --delay 1 --exec 'ts-node' src/index.ts",
-    "build": "tsc -b",
+    "build": "tsc -b && cp -a public dist/public",
     "start": "NODE_ENV=production node dist/src/index.js",
     "deploy": "dotenv -e .env.prod -- sls deploy",
     "test": "jest"
