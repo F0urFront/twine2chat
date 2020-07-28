@@ -8,24 +8,12 @@ const processing: any = {};
 
 async function middlewareMultiResponse(bot: BotWorker & { api: any }, message: { text: string, chat_id: string }, next: () => void) {
   const activity = bot.getConfig('activity');
-  // console.log(activity);
 
-  // console.log(message);
   // if we have already received a response, ignore additional responses
   console.log(`checking ${activity.conversation.id}`);
   if (processing[activity.conversation.id]) {
     return;
-    // console.log('changing message!');
-    // // @ts-expect-error
-    // message.text = null;
-    // // @ts-expect-error
-    // message.type = null;
-    // // @ts-expect-error
-    // message.context = null;
-    // // @ts-expect-error
-    // message.incoming_message = null;
   }
-  // console.log(message);
 
   await next();
 }
