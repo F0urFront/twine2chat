@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@dagrejs/graphlib": "^2.1.4",
-    "aws-sdk": "^2.707.0",
+    "aws-sdk": "^2.814.0",
     "botbuilder-core": "^4.9.2",
     "botkit": "^4.9.0",
     "botkit-adapter-telegram": "^0.1.9",
